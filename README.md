@@ -46,3 +46,26 @@ npm run dev
   "description": "Complete the backend",
   "dueDate": "2025-01-08T20:15:00.000Z"
 }
+
+
+Project Structure
+```
+backend/
+├── package.json               # npm metadata, scripts, "type": "module"
+├── tsconfig.json              # TypeScript configuration (moduleResolution: node16/nodenext)
+├── .env                       # environment variables (not committed)
+├── prisma/
+│   └── schema.prisma          # Prisma schema
+├── src/
+│   ├── index.ts               # App entry — sets up Express, middleware, routes
+│   ├── app.ts                 # Optional: express app creation (used by tests)
+│   ├── lib/
+│   │   └── prisma.ts          # Prisma client initialization (export const prisma = new PrismaClient())
+│   ├── routes.ts      # Express Router for /api/tasks (use explicit .ts/.js extensions in imports)
+│   ├── controller.ts # Request handlers (getAllTasks, createTask)
+│   └── middlewares/
+│       └── errorHandler.ts    # Central error handler (next(err) -> formatted response)
+├── tests/                     # Optional: Jest or vitest test files
+│   └── task.spec.ts
+└── dev.db                     # SQLite database (usually ignored and generated locally)
+```

@@ -15,7 +15,7 @@ export const createTask = async (req: Request, res: Response, next: NextFunction
   try {
     const { title, description, dueDate } = req.body;
 
-     const titleRegex = /^[A-Za-z0-9 ]{6,}$/; // at least 6 letters/digits
+     const titleRegex = /^[A-Za-z0-9 ]{6,}$/; // at least 6 letters/digits/space
 
 if (!title || typeof title !== "string" || !titleRegex.test(title)) {
       return res.status(400).json({ message: "title is required and must be a string and at least 6 characters long" });
