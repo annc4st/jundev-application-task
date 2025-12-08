@@ -1,5 +1,9 @@
 # Task Manager Backend (Express + TypeScript + Prisma + SQLite)
 
+video 
+https://github.com/user-attachments/assets/5e47524a-9a12-4b3b-b6af-2aadaa04360b
+
+
 A mini backend project for managing tasks, built with:
 
 - Node.js + TypeScript  
