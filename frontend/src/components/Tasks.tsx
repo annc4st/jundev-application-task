@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
-import { useNavigate } from "react-router-dom";
 
 import {
     Box,
-
     Container,
-
     CardHeader,
     Card,
-
     CardContent,
     Typography,
-    Button,
 } from "@mui/material";
 
 interface Task {
@@ -25,7 +20,7 @@ interface Task {
 
 export const Tasks = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
-    const navigate = useNavigate();
+
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -78,17 +73,7 @@ export const Tasks = () => {
     return (
         <>
             <Container maxWidth="md" sx={{ marginTop: 4, marginBottom: 4 }}>
-                <Box sx={{
-                    alignContent: "center", marginBottom: 4
-                }}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => navigate("/tasks/create")}
-                    >
-                        + New Task
-                    </Button>
-                </Box>
+
                 <Typography
                     variant="h2"
                     component="h1"
@@ -101,8 +86,9 @@ export const Tasks = () => {
                     List of tasks
                 </Typography>
 
-                <Box sx={{ bgcolor: '#cfe8fc', padding: 2, marginTop: 2, borderRadius: 2 }}>
-
+                <Box
+                    sx={{ bgcolor: "#cfe8fc", padding: 2, marginTop: 2, borderRadius: 2 }}
+                >
                     {tasks.map((task) => (
                         <Card
                             sx={{
@@ -122,7 +108,9 @@ export const Tasks = () => {
                             />
 
                             <CardContent>
-                                {task.description && <Typography>{task.description}</Typography>}
+                                {task.description && (
+                                    <Typography>{task.description}</Typography>
+                                )}
                             </CardContent>
 
                             <TaskStatus status={task.status} />
@@ -131,6 +119,5 @@ export const Tasks = () => {
                 </Box>
             </Container>
         </>
-
     );
 };
