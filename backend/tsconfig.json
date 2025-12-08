@@ -2,30 +2,21 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    // "module": "ESNext",
-    // "moduleResolution": "nodenext",
-    // "target": "ES2023",
-    "target": "ES2022",   // Use modern ES features for Node.js v21+
-    "module": "NodeNext",
-     "moduleResolution": "NodeNext",
-    "strict": true,
+    "module": "EsNext",
+    // "target": "esnext",
+    "types": ["node", "jest"],
+    // For nodejs:
+    "lib": ["esnext"],
+
+
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "ignoreDeprecations": "6.0",
-
-     "paths": {
-            "*": ["./node_modules/*", "./src/types/*"]
-          },
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
+    "target": "ES2022",
 
     // Other Outputs
     "sourceMap": true,
@@ -35,25 +26,15 @@
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    // "allowImportingTsExtensions": true,
 
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
+    
+    "allowImportingTsExtensions": true,
+     "noEmit": true,
 
-    // Recommended Options
-    // "jsx": "react-jsx",
-    // "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    // "noUncheckedSideEffectImports": true,
-    // "moduleDetection": "force",
+    "strict": true,
+ 
     "skipLibCheck": true,
-
   },
-  "include": ["src/**/*"],                 // Include all TypeScript files in `src`
-    "exclude": ["node_modules", "dist"],      // Exclude build output and dependencies
+  "include": ["src/**/*", "tests/**/*"],               // Include all TypeScript files in `src`
+  "exclude": ["node_modules", "dist"],      // Exclude build output and dependencies
 }
