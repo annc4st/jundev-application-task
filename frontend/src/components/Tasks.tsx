@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { api } from "../api";
-
 import {
     Box,
     Container,
@@ -9,6 +7,7 @@ import {
     CardContent,
     Typography,
 } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 
 interface Task {
     id: number;
@@ -19,21 +18,22 @@ interface Task {
 }
 
 export const Tasks = () => {
-    const [tasks, setTasks] = useState<Task[]>([]);
-
-
-    useEffect(() => {
-        const fetchTasks = async () => {
-            try {
-                const response = await api.get<Task[]>("/tasks");
-                // console.log("Fetched tasks:", response.data);
-                setTasks(response.data);
-            } catch (error) {
-                console.error("Error fetching tasks:", error);
-            }
-        };
-        fetchTasks();
-    }, []);
+    const fetchTasks = async () => {
+        try {
+            const response = await api.get<Task[]>("/tasks");
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching tasks:", error);
+        }
+    };
+    const {
+        data: tasks,
+        error,
+        isLoading,
+    } = useQuery({
+        queryKey: ["tasks"],
+        queryFn: fetchTasks,
+    });
 
     const TaskStatus = ({
         status,
@@ -70,10 +70,12 @@ export const Tasks = () => {
         );
     };
 
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error loading tasks</div>;
+
     return (
         <>
             <Container maxWidth="md" sx={{ marginTop: 4, marginBottom: 4 }}>
-
                 <Typography
                     variant="h2"
                     component="h1"
@@ -89,7 +91,7 @@ export const Tasks = () => {
                 <Box
                     sx={{ bgcolor: "#cfe8fc", padding: 2, marginTop: 2, borderRadius: 2 }}
                 >
-                    {tasks.map((task) => (
+                    {tasks?.map((task) => (
                         <Card
                             sx={{
                                 minWidth: 275,
