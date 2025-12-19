@@ -29,7 +29,7 @@ export const createTask = async (
     if (!title || typeof title !== "string" || !titleRegex.test(title)) {
       return res.status(400).json({
         message:
-          "title is required and must be a string and at least 6 characters long",
+          "Title is required and must be a string and at least 6 characters long",
       });
     }
     // validation - description should not be longer than 100 chars
