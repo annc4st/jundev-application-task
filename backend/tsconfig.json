@@ -4,37 +4,39 @@
     // File Layout
     "rootDir": ".",
     "outDir": "./dist",
-
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "EsNext",
-    // "target": "esnext",
-    "types": ["node", "jest"],
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "target": "ES2023",
+    "types": [
+      "node",
+      "jest"
+    ],
     // For nodejs:
-    "lib": ["esnext"],
-
-
+    "lib": [
+      "esnext"
+    ],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2022",
-
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-
-    
     "allowImportingTsExtensions": true,
-     "noEmit": true,
-
+    "noEmit": true,
     "strict": true,
- 
     "skipLibCheck": true,
   },
-  "include": ["src/**/*", "tests/**/*"],               // Include all TypeScript files in `src`
-  "exclude": ["node_modules", "dist"],      // Exclude build output and dependencies
+  "include": [
+    "src/**/*",
+    "tests/**/*"
+  ], // Include all TypeScript files in `src`
+  "exclude": [
+    "node_modules",
+    "dist"
+  ], // Exclude build output and dependencies
 }
