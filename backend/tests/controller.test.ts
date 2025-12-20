@@ -1,5 +1,4 @@
 import { jest, describe, it, beforeEach, expect } from "@jest/globals";
-// import {prisma} from "../src/lib/prisma.ts";
 import { prismaMock, resetPrismaMock } from "./mocks/singleton.ts";
 
 jest.mock("../src/lib/prisma.ts", () => ({
@@ -49,17 +48,20 @@ describe("Controller Tests", () => {
     prismaMock.task.findMany.mockResolvedValue(fakeTasks);
 
     await getAllTasks(req as Request, res as Response, next);
+    console.log(res.json.mock.calls?.[0]?.[0]);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(fakeTasks);
   });
 
   it("createTask should create a new task with valid data", async () => {
-    req.body = {
+    req = {
+      body: {
       title: "Test Task 1",
       description: "desc",
       dueDate: "2025-12-30T22:00:35.950Z",
-    };
+    },
+  }
 
     const newTask = {
       id: 1,
@@ -67,12 +69,21 @@ describe("Controller Tests", () => {
       description: "desc",
       status: Status.NEW,
       dueDate: new Date("2025-12-30T22:00:35.950Z"),
-      createdAt: new Date("2025-12-19T22:00:35.982Z"),
     };
 
-    prismaMock.task.create.mockResolvedValue(newTask);
+    prismaMock.task.create.mockResolvedValue(newTask as any);
 
     await createTask(req as Request, res as Response, next);
+    // console.log(prismaMock.task.create.mock.calls[0]?.[0]?.data);
+    console.log(res.json.mock.calls);
+
+    expect(prismaMock.task.create).toHaveBeenCalledWith({
+      data: {
+        title: "Test Task 1",
+        description: "desc",
+        dueDate: new Date("2025-12-30T22:00:35.950Z"),
+      },
+    });
 
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith(newTask);
