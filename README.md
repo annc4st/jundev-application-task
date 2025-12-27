@@ -56,7 +56,9 @@ Project Structure
 ```
 backend/
 ├── package.json               # npm metadata, scripts, "type": "module"
-├── tsconfig.json              # TypeScript configuration (moduleResolution: node16/nodenext)
+├── tsconfig.json              # TypeScript configuration
+|── jest.config.js             # jest configuration
+|── prisma.config.ts           # Prisma config module
 ├── .env                       # environment variables (not committed)
 ├── prisma/
 │   └── schema.prisma          # Prisma schema
@@ -70,6 +72,11 @@ backend/
 │   └── middlewares/
 │       └── errorHandler.ts    # Central error handler (next(err) -> formatted response)
 ├── tests/                     # Optional: Jest or vitest test files
-│   └── task.spec.ts
+│   └── controller.test.ts
+|   |-- integration.test.ts
+|   |-- helper.ts             # wipes test data between runs
+|   ├──mocks/
+
+
 └── dev.db                     # SQLite database (usually ignored and generated locally)
 ```
