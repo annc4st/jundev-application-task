@@ -1,4 +1,6 @@
-# Task Manager Backend (Express + TypeScript + Prisma + SQLite)
+# Task Manager Backend 
+
+## 1. Express + TypeScript + Prisma + SQLite
 
 video 
 https://github.com/user-attachments/assets/5e47524a-9a12-4b3b-b6af-2aadaa04360b
@@ -80,3 +82,39 @@ backend/
 
 └── dev.db                     # SQLite database (usually ignored and generated locally)
 ```
+
+## 2. .NET Minimal API
+A mini backend project for managing tasks, built with:
+
+- .NET 10 Minimal API
+- Entity Framework Core with In-Memory database (can be swapped with SQLite or SQL Server)
+- OpenAPI/SWwagger for Interactive API
+
+### 1. Install .NET sdk
+
+### 2. Restore Dependencies
+
+```
+cd webapi+react/MiniBackend.Api
+dotnet restore
+```
+### 2. Run the api
+
+```
+dotnet run
+```
+
+### 3. API endpointts
+
+| Method | Endpoint      | Description       | Body (JSON)                                                                                        |            |                                      |
+| ------ | ------------- | ----------------- | -------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------ |
+| GET    | `/tasks`      | Get all tasks     | -                                                                                                  |            |                                      |
+| GET    | `/tasks/{id}` | Get task by ID    | -                                                                                                  |            |                                      |
+| POST   | `/tasks`      | Create a new task | `{ "title": "Task name", "description": "Optional", "status": "New", "dueDate": "ISO 8601 date" }` |            |                                      |
+| PUT    | `/tasks/{id}` | Update a task     | `{ "title": "...", "description": "...", "status": "New                                            | InProgress | Done", "dueDate": "ISO 8601 date" }` |
+| DELETE | `/tasks/{id}` | Delete a task     | -                                                                                                  |            |                                      |
+
+
+## FRONTEND
+Both backend APIs are connected to the React app
+
